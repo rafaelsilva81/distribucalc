@@ -17,7 +17,7 @@ function App() {
 
   useEffect(() => {
     connection.onmessage = (event) => {
-      setCalc(event.data);
+      setValue(event.data);
     };
   }, [connection]);
 
@@ -35,7 +35,13 @@ function App() {
       return;
     }
 
-    if (val === "+" || val === "-" || val === "X" || val === "/") {
+    if (
+      val === "+" ||
+      val === "-" ||
+      val === "X" ||
+      val === "/" ||
+      val === "^"
+    ) {
       setCalc({ firstExpression: value, operator: val, secondExpression: "" });
       setValue("0");
       return;

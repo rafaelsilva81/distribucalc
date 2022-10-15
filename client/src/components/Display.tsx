@@ -46,7 +46,7 @@ export const Display = (props: DisplayProps) => {
       <div className="flex justify-end bg-[#55584d] h-1/3 w-full border-[1.5em] border-gray-300">
         <div className="flex flex-col w-full h-full py-3">
           <div className="flex justify-end items-center mx-4">
-            <p className="text-6xl font-bold text-neutral-900 font-[Calculator]">
+            <p className="text-6xl font-bold text-neutral-900 font-[Calculator] text-ellipsis overflow-hidden">
               {display}
             </p>
           </div>

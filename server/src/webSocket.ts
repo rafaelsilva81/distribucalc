@@ -26,13 +26,11 @@ async function onMessage(ws: WebSocket, data: WebSocket.Data) {
  
 async function calculate(message: Calculation) {
     const { firstExpression, secondExpression, operator } = message;
-    let res: number | string;
+    let res: number;
     res = 0;
-    if (firstExpression === 'ERR' || secondExpression === 'ERR') {
-        res = 'ERR';
-    }
-    else if (operator === '/' && secondExpression === '0') {
-        res = 'ERR';
+
+    if (operator === '/' && secondExpression === '0') {
+        return 'ERR'
     } else {
         let t1 = Number(firstExpression);
         let t2 = Number(secondExpression);
@@ -43,17 +41,24 @@ async function calculate(message: Calculation) {
             case '-':
                 res = t1 - t2;
                 break;
-            case '*':
+            case 'X':
                 res = t1 * t2;
                 break;
             case '/':
                 res = t1 / t2;
                 break;
+            case '^':
+                res = t1 ** t2;
             default:
                 break;
         }
     }
-    return res
+    
+    if (res == Infinity) {
+        return 'ERR'
+    } else {
+        return res;
+    }
    
 }
 
